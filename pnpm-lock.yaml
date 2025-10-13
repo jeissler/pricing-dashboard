@@ -17,6 +17,9 @@ importers:
       '@tanstack/vue-query':
         specifier: ^5.90.2
         version: 5.90.2(vue@3.5.22(typescript@5.9.3))
+      ag-charts-community:
+        specifier: ^12.2.0
+        version: 12.2.0
       ag-charts-vue3:
         specifier: ^12.2.0
         version: 12.2.0(vue@3.5.22(typescript@5.9.3))

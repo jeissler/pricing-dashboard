@@ -15,8 +15,7 @@
 
 <script setup lang="ts">
 import { AgGridVue } from 'ag-grid-vue3'
-import { themeQuartz } from 'ag-grid-community'
-import { type ColDef } from 'ag-grid-community'
+import { type ColDef, themeQuartz } from 'ag-grid-community'
 import { ref } from 'vue'
 
 const selectedZipCode = ref('99203') // simulate zip code from url

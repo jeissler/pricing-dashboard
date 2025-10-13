@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/vue-query'
 import type { Ref } from 'vue'
 import sampleData from '@/data/sample_data.json'
+import type { PricingData } from '@/data/types/pricing'
 
-// TODO: types for response data - remove any
 export function usePricingData(): {
-  data: any
+  data: Ref<PricingData | undefined>
   isLoading: Ref<boolean>
-  error: any
+  error: Ref<Error | null>
 } {
-  async function fetchPricingData() {
+  async function fetchPricingData(): Promise<PricingData> {
     await new Promise((resolve) => setTimeout(resolve, 500)) // simulate loading time
 
     // const apiUrl =
@@ -20,7 +20,7 @@ export function usePricingData(): {
     // })
     // return await response.json()
 
-    return sampleData
+    return sampleData as PricingData
   }
 
   const { data, isLoading, error } = useQuery({
