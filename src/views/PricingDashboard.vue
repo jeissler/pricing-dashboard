@@ -1,16 +1,14 @@
 <template>
-  <h2>Pricing</h2>
-
   <section v-if="error">
     <p>Error: {{ error.message }}</p>
   </section>
 
   <template v-else>
-    <section>
+    <section class="py-5">
       <PricingStats :is-loading="isLoading" :data="data" />
     </section>
 
-    <section>
+    <section class="py-5">
       <PricingTable :is-loading="isLoading" :data="data" />
     </section>
   </template>
