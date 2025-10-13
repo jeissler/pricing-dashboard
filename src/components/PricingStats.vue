@@ -5,7 +5,7 @@
     <p>Loading Pricing Stats...</p>
   </div>
   <div v-else>
-    <p>{{ data }}</p>
+    <p></p>
   </div>
 </template>
 

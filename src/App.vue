@@ -7,7 +7,7 @@
   <main class="min-h-screen max-w-7xl mx-auto">
     <PricingDashboard />
   </main>
-  <footer class="border-t border-blue-500 py-2 px-4 max-w-7xl mx-auto">
+  <footer class="border-t border-blue-500 py-2 px-4 max-w-7xl mx-auto mt-10">
     <p class="text-gray-600 text-right text-sm">&copy; Copyright {{ new Date().getFullYear() }}</p>
   </footer>
 </template>
