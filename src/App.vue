@@ -1,11 +1,19 @@
-<script setup lang="ts"></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <header class="bg-blue-700 text-white py-2 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h1>Pricing Dashboard</h1>
+    </div>
+  </header>
+  <main class="min-h-screen max-w-7xl mx-auto">
+    <PricingDashboard />
+  </main>
+  <footer class="border-t border-blue-500 py-2 px-4 max-w-7xl mx-auto">
+    <p class="text-gray-600 text-right text-sm">&copy; Copyright {{ new Date().getFullYear() }}</p>
+  </footer>
 </template>
+
+<script setup lang="ts">
+import PricingDashboard from './views/PricingDashboard.vue'
+</script>
 
 <style scoped></style>
