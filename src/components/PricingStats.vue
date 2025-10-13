@@ -2,7 +2,7 @@
   <div v-if="isLoading">
     <p>Loading Pricing Stats...</p>
   </div>
-  <div v-else class="grid grid-cols-1 gap-px bg-gray-900/5 sm:grid-cols-3">
+  <div v-else class="grid grid-cols-1 gap-px bg-gray-900/5 lg:grid-cols-3">
     <!-- Average Rate by Service Type -->
     <div class="bg-white px-4 py-6 sm:px-6 lg:px-8 col-span-2">
       <p class="text-lg font-medium text-gray-500">Average Rate by Service Type</p>
