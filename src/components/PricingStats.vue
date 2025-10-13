@@ -5,7 +5,7 @@
   <div v-else class="grid grid-cols-1 gap-px bg-gray-900/5 sm:grid-cols-3">
     <!-- Average Rate by Service Type -->
     <div class="bg-white px-4 py-6 sm:px-6 lg:px-8 col-span-2">
-      <p class="font-medium text-gray-500">Average Rate by Service Type</p>
+      <p class="text-lg font-medium text-gray-500">Average Rate by Service Type</p>
 
       <AgCharts :options="chartOptions" />
     </div>
@@ -84,7 +84,9 @@ const highestValueServiceType = computed(() => {
 
 const chartOptions = computed(() => {
   return {
-    data: npiTypes.value,
+    data: npiTypes.value.map((type) => {
+      return { ...type, name: `${type.name.substring(0, 35)}${type.name.length > 35 ? '...' : ''}` }
+    }),
     series: [
       {
         type: 'donut',
