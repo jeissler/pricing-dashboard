@@ -1,7 +1,7 @@
 <template>
   <header class="bg-blue-700 text-white py-2 px-4">
     <div class="max-w-7xl mx-auto">
-      <h1>Pricing Dashboard - Jeremy Eissler</h1>
+      <h1 class="text-xl font-bold">Pricing Dashboard - Jeremy Eissler</h1>
     </div>
   </header>
   <main class="min-h-screen max-w-7xl mx-auto">
