@@ -22,5 +22,3 @@ import { usePricingData } from '@/composables/usePricingData'
 // TODO: composable
 const { data, isLoading, error } = usePricingData()
 </script>
-
-<style scoped></style>

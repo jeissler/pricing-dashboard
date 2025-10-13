@@ -12,8 +12,6 @@
 <script setup lang="ts">
 defineProps<{
   isLoading: boolean
-  data: any
+  data: Record<string, { rates: Record<string, unknown>[] }>
 }>()
 </script>
-
-<style scoped></style>

@@ -4,7 +4,7 @@
   </div>
   <div v-else>
     <AgGridVue
-      class="h-[90vh]"
+      class="h-[90vh] w-full"
       :column-defs="columnDefs"
       :row-data="data[selectedZipCode]?.rates"
       :default-col-def="defaultColDef"
@@ -27,6 +27,7 @@ const myTheme = themeQuartz.withParams({
   headerFontSize: 14,
   wrapperBorder: false,
   wrapperBorderRadius: 4,
+  spacing: 4,
 })
 
 defineProps<{
@@ -42,21 +43,15 @@ const columnDefs = ref<ColDef[]>([
   {
     field: 'entity_name',
     headerName: 'Entity Name',
-    flex: 2,
     minWidth: 200,
+    width: 250,
   },
   {
     field: 'npi_taxonomy_name',
     headerName: 'NPI Type',
-    flex: 1.5,
     minWidth: 150,
   },
-  {
-    field: 'negotiation_type',
-    headerName: 'Negotiation Type',
-    flex: 1,
-    minWidth: 120,
-  },
+  { field: 'entity_address', headerName: 'Entity Address', width: 250, minWidth: 200 },
   {
     field: 'rate',
     headerName: 'Rate',
@@ -77,28 +72,21 @@ const columnDefs = ref<ColDef[]>([
     field: 'cms_baseline_rate',
     headerName: 'CMS Baseline Rate',
     valueFormatter: (params) => formatCurrency(params.value),
-    width: 140,
-    minWidth: 120,
     cellStyle: { fontWeight: '500' },
+    width: 120,
+    minWidth: 100,
   },
   {
     field: 'cms_baseline_schedule',
     headerName: 'CMS Baseline Schedule',
-    flex: 1.5,
-    minWidth: 150,
-  },
-  {
-    field: 'arrangement',
-    headerName: 'Arrangement',
-    flex: 1,
-    minWidth: 120,
+    minWidth: 220,
   },
   {
     field: 'date_accessed',
     headerName: 'Date Accessed',
     valueFormatter: (params) => new Date(params.value).toLocaleDateString(),
-    width: 130,
-    minWidth: 110,
+    width: 120,
+    minWidth: 100,
   },
 ])
 
@@ -108,7 +96,6 @@ const defaultColDef = ref<ColDef>({
   resizable: true,
   wrapText: true,
   autoHeaderHeight: true,
+  autoHeight: true,
 })
 </script>
-
-<style scoped></style>

@@ -15,5 +15,3 @@
 <script setup lang="ts">
 import PricingDashboard from './views/PricingDashboard.vue'
 </script>
-
-<style scoped></style>
