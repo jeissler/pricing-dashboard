@@ -85,13 +85,28 @@ const highestValueServiceType = computed(() => {
 const chartOptions = computed(() => {
   return {
     data: npiTypes.value.map((type) => {
-      return { ...type, name: `${type.name.substring(0, 35)}${type.name.length > 35 ? '...' : ''}` }
+      return {
+        name: `${type.name.substring(0, 35)}${type.name.length > 35 ? '...' : ''}`,
+        averageValue: type.averageValue,
+      }
     }),
+
     series: [
       {
         type: 'donut',
         calloutLabelKey: 'name',
         angleKey: 'averageValue',
+        tooltip: {
+          renderer: (params: {
+            datum: { name: string; averageValue: number }
+            angleKey: string
+          }) => {
+            return {
+              heading: params.datum.name,
+              data: [{ label: 'Average Rate', value: `$${params.datum.averageValue.toFixed(2)}` }],
+            }
+          },
+        },
       },
     ],
   }
