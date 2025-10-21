@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/vue-query'
 import type { Ref } from 'vue'
-import sampleData from '@/data/sample_data.json'
+//import sampleData from '@/data/sample_data.json'
 import type { PricingData } from '@/data/types/pricing'
 
 export function usePricingData(): {

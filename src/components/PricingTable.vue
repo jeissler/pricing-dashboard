@@ -6,7 +6,7 @@
     <AgGridVue
       class="h-[90vh] w-full"
       :column-defs="columnDefs"
-      :row-data="data[selectedZipCode]?.rates"
+      :row-data="data?.[selectedZipCode]?.rates || []"
       :default-col-def="defaultColDef"
       :theme="myTheme"
     />
@@ -17,6 +17,7 @@
 import { AgGridVue } from 'ag-grid-vue3'
 import { type ColDef, themeQuartz } from 'ag-grid-community'
 import { ref } from 'vue'
+import { type PricingData } from '@/data/types/pricing'
 
 const selectedZipCode = ref('99203') // simulate zip code from url
 
@@ -31,7 +32,7 @@ const myTheme = themeQuartz.withParams({
 
 defineProps<{
   isLoading: boolean
-  data: Record<string, { rates: Record<string, unknown>[] }>
+  data: PricingData | undefined
 }>()
 
 function formatCurrency(value: number) {

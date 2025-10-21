@@ -34,13 +34,16 @@
 import { AgCharts } from 'ag-charts-vue3'
 import { type AgStandaloneChartOptions } from 'ag-charts-community'
 import { computed } from 'vue'
+import { type PricingData } from '@/data/types/pricing'
 
 const props = defineProps<{
   isLoading: boolean
-  data: Record<string, { rates: Record<string, unknown>[] }>
+  data: PricingData | undefined
 }>()
 
 const npiTypes = computed(() => {
+  if (!props.data) return []
+
   const typeData = new Map()
 
   // Collect all rates for each NPI type
