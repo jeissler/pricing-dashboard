@@ -31,39 +31,76 @@
 </template>
 
 <script setup lang="ts">
-import { AgCharts } from 'ag-charts-vue3'
 import { type AgStandaloneChartOptions } from 'ag-charts-community'
-import { computed } from 'vue'
-import { type PricingData } from '@/data/types/pricing'
+import { computed, defineAsyncComponent } from 'vue'
+import { type Rate } from '@/data/types/pricing'
+
+const AgCharts = defineAsyncComponent(() => import('ag-charts-vue3').then((m) => m.AgCharts))
 
 const props = defineProps<{
   isLoading: boolean
-  data: PricingData | undefined
+  data: Rate[]
 }>()
 
 const npiTypes = computed(() => {
-  if (!props.data) return []
+  //if (!props.data) return []
 
   const typeData = new Map()
 
-  // Collect all rates for each NPI type
-  Object.values(props.data).forEach((serviceData) => {
-    serviceData.rates.forEach((rate) => {
-      if (rate.npi_taxonomy && rate.npi_taxonomy_name && rate.rate) {
-        const taxonomyCode = rate.npi_taxonomy
-        const taxonomyName = rate.npi_taxonomy_name
-        const rateValue = Number(rate.rate)
+  // // Collect all rates for each NPI type
+  // props.data.forEach((rate) => {
+  //   if (!rate.npi_taxonomy && !rate.npi_taxonomy_name && !rate.rate) return
 
-        if (!typeData.has(taxonomyCode)) {
-          typeData.set(taxonomyCode, {
-            name: taxonomyName,
-            rates: [],
-          })
-        }
-        typeData.get(taxonomyCode).rates.push(rateValue)
-      }
-    })
-  })
+  //   const taxonomyCode = rate.npi_taxonomy
+  //   const taxonomyName = rate.npi_taxonomy_name
+  //   const rateValue = Number(rate.rate)
+
+  //   if (!typeData.has(taxonomyCode)) {
+  //     typeData.set(taxonomyCode, {
+  //       name: taxonomyName,
+  //       rates: [],
+  //     })
+  //   }
+  //   typeData.get(taxonomyCode).rates.push(rateValue)
+  // })
+
+  // const typeData = props.data.reduce(
+  //   (acc: Record<string, { name: string; rates: number[] }>, rate) => {
+  //     if (!rate.npi_taxonomy || !rate.npi_taxonomy_name || !rate.rate) return acc
+
+  //     const taxonomyCode = rate.npi_taxonomy
+  //     const taxonomyName = rate.npi_taxonomy_name
+  //     const rateValue = Number(rate.rate)
+
+  //     if (!acc[taxonomyCode]) {
+  //       acc[taxonomyCode] = {
+  //         name: taxonomyName,
+  //         rates: [],
+  //       }
+  //     }
+
+  //     acc[taxonomyCode].rates.push(rateValue)
+
+  //     return acc
+  //   },
+  //   {},
+  // )
+
+  for (const rate of props.data) {
+    if (!rate.npi_taxonomy || !rate.npi_taxonomy_name || !rate.rate) continue
+
+    const taxonomyCode = rate.npi_taxonomy
+    const taxonomyName = rate.npi_taxonomy_name
+    const rateValue = Number(rate.rate)
+
+    if (!typeData.has(taxonomyCode)) {
+      typeData.set(taxonomyCode, {
+        name: taxonomyName,
+        rates: [],
+      })
+    }
+    typeData.get(taxonomyCode).rates.push(rateValue)
+  }
 
   // Calculate averages and return simple objects
   const result = []
